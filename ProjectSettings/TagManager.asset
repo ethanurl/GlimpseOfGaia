@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CollisionMap
+    uniqueID: 3345076879
+    locked: 0
   - name: PlayerLayer
     uniqueID: 145263375
     locked: 0

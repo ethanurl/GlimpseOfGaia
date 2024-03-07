@@ -11,6 +11,7 @@ public class Objects : MonoBehaviour
     public GameObject Player;
     private float distance;
     public GameObject Gaia;
+    public AudioSource pickupsound;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class Objects : MonoBehaviour
         {
             if (Input.GetKeyDown("e"))
             {
+                pickupsound.Play();
                 follower = true;
             }
         }

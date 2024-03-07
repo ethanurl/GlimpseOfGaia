@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,11 +15,13 @@ public class PlayerScript : MonoBehaviour
     private bool dashing;
     public Slider dashtimer;
     public Camera yocamera;
+    public AudioSource dashsound;
+    public Animator playeranim;
+    float newval;
     // Start is called before the first frame update
     void Start()
     {
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -27,6 +30,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (dashcd >= 3f)
             {
+                dashsound.Play();
                 dashing = true;
                 if (dashduration == 5f)
                 {
@@ -84,6 +88,39 @@ public class PlayerScript : MonoBehaviour
         {
             Vector3 right = new Vector3(142, 0, 0);
             yocamera.transform.position -= right;
+        }
+
+        //This is the controller for the animation tree, in order to match player movement
+        if (Input.anyKey == false)
+        {
+            playeranim.SetFloat("Blend", newval - 0.5f);
+        }
+        if (Input.GetKey("w"))
+        {
+            newval = playeranim.GetFloat("Blend");
+            if (Input.GetKey("a") == false && (Input.GetKey("d") == false))
+            {
+                playeranim.SetFloat("Blend", 0.8f);
+            }
+        }
+        if (Input.GetKey("a"))
+        {
+            newval = playeranim.GetFloat("Blend");
+            playeranim.SetFloat("Blend", 0.6f);
+        }
+        if (Input.GetKey("s"))
+        {
+            newval = playeranim.GetFloat("Blend");
+            if (Input.GetKey("a") == false && (Input.GetKey("d") == false))
+            {
+                playeranim.SetFloat("Blend", 0.5f);
+            }
+        }
+        if (Input.GetKey("d"))
+        {
+            newval = playeranim.GetFloat("Blend");
+            playeranim.SetFloat("Blend", 0.7f);
+
         }
     }
 }
