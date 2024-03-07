@@ -11,7 +11,6 @@ public class Objects : MonoBehaviour
     public GameObject Player;
     private float distance;
     public GameObject Gaia;
-    public AudioSource PickupNoise;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +24,6 @@ public class Objects : MonoBehaviour
         {
             if (Input.GetKeyDown("e"))
             {
-                PickupNoise.Play();
                 follower = true;
             }
         }
@@ -43,18 +41,19 @@ public class Objects : MonoBehaviour
             transform.RotateAround(Gaia.transform.position, Vector3.right, 20*Time.deltaTime);
         }
     }
-    //This is how the object knows whether or not the player is in range to pick it up
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.name == "Player")
         {
             pickable = true;
+            Debug.Log("yomama");
         }
     }
     void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.name == "Player")
         {
+            Debug.Log("okeydokey");
             pickable = false;
         }
     }
