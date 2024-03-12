@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     public AudioSource dashsound;
     public Animator playeranim;
     float newval;
+    public TrailRenderer trail;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,10 +63,12 @@ public class PlayerScript : MonoBehaviour
         if (dashing == true)
         {
             playercollision.enabled = false;
+            trail.enabled = true;
         }
         if (dashing == false)
         {
             playercollision.enabled = true;
+            trail.enabled = false;
         }
         dashtimer.value = dashcd;
         //This part is going to be how the camera moves when the player goes through different screens
