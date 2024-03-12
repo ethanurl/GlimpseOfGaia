@@ -146,7 +146,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (healthval.value == 0)
         {
-            SceneManager.LoadScene("CreditsScreen");
+            SceneManager.LoadScene("GameOver");
         }
     }
     //T

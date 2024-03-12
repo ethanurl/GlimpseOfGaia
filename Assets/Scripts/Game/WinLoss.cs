@@ -27,7 +27,7 @@ public class WinLoss : MonoBehaviour
         }
         if (objects.pickedup == 3)
         {
-            SceneManager.LoadScene("CreditsScreen");
+            SceneManager.LoadScene("GameOver");
         }
     }
 }
