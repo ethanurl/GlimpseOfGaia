@@ -26,6 +26,7 @@ public class PlayerScript : MonoBehaviour
     public int pickedup = 0;
     public float hptimer = 0;
     private bool dying = false;
+    public TrailRenderer trail;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,11 +72,13 @@ public class PlayerScript : MonoBehaviour
         {
             playercollision.enabled = false;
             tilemapcollider.enabled = false;
+            trail.enabled = true;
         }
         if (dashing == false)
         {
             playercollision.enabled = true;
             tilemapcollider.enabled = true;
+            trail.enabled = false;
         }
         dashtimer.value = dashcd;
         //This part is going to be how the camera moves when the player goes through different screens
