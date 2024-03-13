@@ -27,14 +27,26 @@ public class PlayerScript : MonoBehaviour
     public float hptimer = 0;
     private bool dying = false;
     public TrailRenderer trail;
+    public GameObject cutsceneplayer;
+    private bool cutsceneover;
+    public GameObject UI;
     // Start is called before the first frame update
     void Start()
     {
+        cutsceneover = false;
     }
     // Update is called once per frame
     void Update()
     {
+        if (cutsceneover == false)
+        {
+            UI.SetActive(false);
+            yocamera.transform.position = cutsceneplayer.transform.position;
+            Invoke ("CutsceneOver", 3);
+        }
         ///THIS IS PLAYER MOVEMENT
+        if (cutsceneover == true)
+        {
         if (Input.GetKeyDown(KeyCode.Space) && dashing == false)
         {
             if (dashcd >= 3f)
@@ -148,12 +160,11 @@ public class PlayerScript : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
+        }
     }
     //T
     void OnTriggerEnter2D(Collider2D tilemap)
     {
-        Debug.Log(tilemap);
-        Debug.Log(hptimer);
         if (tilemap.gameObject.name == "CollisionMap")
         {
             dying = true;
@@ -165,5 +176,11 @@ public class PlayerScript : MonoBehaviour
         {
             dying = false;
         }
+    }
+    void CutsceneOver()
+    {
+        cutsceneover = true;
+        yocamera.transform.position = new Vector2(0,0);
+        UI.SetActive(true);
     }
 }

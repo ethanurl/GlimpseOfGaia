@@ -17,6 +17,7 @@ public class WinLoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(objects.pickedup);
         if (objects.pickedup == 1)
         {
             leftpillar.SetActive(true);
