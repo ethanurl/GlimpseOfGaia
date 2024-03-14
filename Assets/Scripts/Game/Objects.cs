@@ -57,6 +57,7 @@ public class Objects : MonoBehaviour
                 follower = false;
                 player1.hasfollower = false;
                 player1.pickedup += 1;
+                player1.healthval.value = 1;
             }
         }
         //This part is for circling around Gaia once placed there
